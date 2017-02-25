@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron myBackground row" style="padding-bottom: 60px;">
+            <div class="col-md-12">
+                <h2 class="gotham text-center">
+                    <span class="glyphicon glyphicon-search"></span>
+                    Search
+                </h2>
+                <br>
+                <hr class="myhr">
+                <br>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-4 control-label" for="method">Search By:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <div class="btn-group">
+                                <button id="method" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Key Word<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a id="keyword-search">Key Word</a></li>
+                                    <li><a id="location-search">Location</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-4 control-label" for="type">Search For:</label>
+                        <div class="col-sm-10 col-md-8">
+                            <div class="btn-group">
+                                <button id="type" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Group<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a id="group-search">Group</a></li>
+                                    <li><a id="business-search">Business</a></li>
+                                    <li id="user-box"><a id="user-search">User</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" id="keyword-box">
+                        <label class="col-sm-2 col-md-4 control-label" for="keyword">Key Word:</label>
+                        <div class="col-sm-7 col-md-5">
+                            <input class="form-control" id="keyword" type="text" placeholder="Key Word"/>
+                        </div>
+                    </div>
+                    <div class="form-group" id="lat-box">
+                        <label class="col-sm-2 col-md-4 control-label" for="lat">Latitude:</label>
+                        <div class="col-sm-7 col-md-5">
+                            <input class="form-control" id="lat" type="number" placeholder="Latitude"/>
+                        </div>
+                    </div>
+                    <div class="form-group" id="lon-box">
+                        <label class="col-sm-2 col-md-4 control-label" for="lon">Longitude:</label>
+                        <div class="col-sm-7 col-md-5">
+                            <input class="form-control" id="lon" type="number" placeholder="Longitude"/>
+                        </div>
+                    </div>
+                    <div class="form-group" id="radius-box">
+                        <label class="col-sm-2 col-md-4 control-label" for="radius">Radius:</label>
+                        <div class="col-sm-7 col-md-5">
+                            <input class="form-control" id="radius" type="number" placeholder="Radius"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-md-offset-5 col-sm-4 col-md-2">
+                            <button class="form-control btn btn-primary" id="send">Search!</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="results" class="list-group row"></div>
+    </div>
+    {% load static %}
+    <script src="{% static 'js/search.js' %}"></script>
+{% endblock %}

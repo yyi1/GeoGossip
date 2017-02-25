@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <title>GeoGossip</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/framework7.ios.min.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/framework7.ios.colors.min.css' %}"/>
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/framework7.min.js' %}"></script>
+        <script src="{% static 'js/chat.js' %}"></script>
+    </head>
+    <body>
+        <div class="page toolbar-fixed navbar-fixed">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="left">
+                        <a href="{% url 'index' %}" class="link external">
+                            <i class="icon icon-back"></i>
+                            <span>Back</span>
+                        </a>
+                    </div>
+                    <div class="center" style="left: 0;" id="group-name">{{ group.name }}</div>
+                    <div class="right">
+                        <a href="{% url 'logout' %}" class="link external">Log out</a>
+                    </div>
+                </div>
+            </div>
+            <div class="toolbar messagebar">
+                <div class="toolbar-inner">
+                    <textarea placeholder="Text Message"></textarea>
+                    <a href="" class="link" id="send">Send</a>
+                </div>
+            </div>
+            <div class="page-content messages-content">
+                <div class="messages" id="message_layout">
+                    {% for message in messages %}
+                        {% if current_user == message.user %}
+                            <div class="message message-sent">
+                                <div class="message-name">
+                                    <a href="{% url 'profile' current_user.id %}" class="link external">{{ message.user.username }}</a>
+                                </div>
+                                <div class="message-text">{{ message.content }}</div>
+                                <a href="{% url 'profile' current_user.id %}" class="link external">
+                                    <div class="message-avatar" style="background-image: url({% url 'avatar' message.user.id %})"></div>
+                                </a>
+                                <div class="message-date">{{ message.created_on }}</div>
+                            </div>
+                        {% else %}
+                            <div class="message message-received">
+                                <div class="message-name">
+                                    <a href="{% url 'profile' message.user.id %}" class="link external">{{ message.user.username }}</a>
+                                </div>
+                                <div class="message-text">{{ message.content }}</div>
+                                <a href="{% url 'profile' message.user.id %}" class="link external">
+                                    <div class="message-avatar" style="background-image: url({% url 'avatar' message.user.id %})"></div>
+                                </a>
+                                <div class="message-date">{{ message.created_on }}</div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="group_id" value="{{ group.id }}"/>
+        <input type="hidden" id="user_id" value="{{ current_user.id }}"/>
+        <input type="hidden" id="username" value="{{ current_user.username }}"/>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row alert alert-danger alert-dismissible fade in" role="alert" id="no-gps">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>No GPS</strong>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-sm-2 col-xs-2 list-group">
+                    <h4 class="gotham text-center" style="color: white">Group List</h4>
+                    <hr class="style-one">
+                <div id="group-list">
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-10 col-xs-10">
+                <div id="map" class="map" data-toggle="tooltip"
+                     title="Double click on the map to create a new group!"></div>
+            </div>
+        </div>
+    </div>
+    {% load static %}
+    <script src="{% static 'js/gmaps.js' %}"></script>
+    <script src="{% static 'js/mapview.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwVGpj7P0LkT8gFvD-i_amUqkl67HE3XU&callback=initMap" async defer></script>
+{% endblock %}

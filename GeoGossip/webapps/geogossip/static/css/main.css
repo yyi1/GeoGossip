@@ -1,0 +1,83 @@
+body {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/45544/background-svg.svg) no-repeat center center fixed;
+    /*background: url('../img/bg.png') no-repeat center center fixed;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /*background-color: #5e5e5e;*/
+}
+
+.err {
+    color: red;
+}
+
+.myBackground {
+    background-color: rgba(255,255,255, 0.5);
+    color: inherit;
+}
+
+.mypanel {
+    margin-top: 20px;
+    margin-left: 80px;
+    background-color: rgba(245, 245, 245, 0.4);
+    border-radius: 10px;
+    border-color: black;
+}
+
+.checkbox {
+    padding-left: 20px;
+}
+
+.myhr {
+    padding: 0;
+    border: none;
+    border-top: medium double #333;
+    color: #333;
+    text-align: center;
+}
+
+hr.myhr:after {
+    content: "§";
+    display: inline-block;
+    position: relative;
+    top: -0.9em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background-color: rgba(245, 245, 245, 0.0);
+}
+
+hr.style-one {
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+}
+.mysmall {
+    color: #1a1a1a;
+}
+
+.uploadFile {
+    margin-top: 20px;
+    /*margin-left: 130px;*/
+}
+
+.mytable {
+    margin-left: 40px;
+    margin-top: 10px;
+}
+
+.buttonSet {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.map {
+    height: 600px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.my404 {
+    margin-top: 50px;
+    margin-left: 20px;
+}

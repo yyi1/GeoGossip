@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block navigation %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <br>
+        <br>
+        <div class="jumbotron myBackground row" style="padding-bottom: 200px;">
+            <div class="col-md-7">
+                <h1 class="whitney">
+                    {% load static %}
+                    <img class="img-center" src={% static "img/logo.png" %} width="340" height="96">
+                </h1>
+                <h3 class="gotham">Hey, nice to see you :=)</h3>
+                <p>GeoGossip is a location based group chatting application. It provides you great opportunity
+                    to discover and connect interesting people around you. You can easily create your own
+                    instant groups and to join existed chat rooms nearby.</p>
+                <p>Now what are you waiting for? Log in and join us!</p>
+            </div>
+            <div class="col-md-4 mypanel" style="margin-top: 60px">
+                <form class="form-horizontal" method="post" action="{% url 'login' %}">
+                    <br>
+                    <h3 class="form-signin-heading" style="color: midnightblue">&nbsp &nbsp Please sign in</h3>
+                    <br>
+                    {% if form.non_field_errors %}
+                        <div class="row text-center">
+                            <p class="err">Incorrect username or password</p>
+                        </div>
+                    {% endif %}
+                    {% for visible_field in form.visible_fields %}
+                        <div class="form-group">
+                            {% for error in visible_field.errors %}
+                                <small class="err">{{ error }}</small>
+                            {% endfor %}
+                            <label class="col-md-4 control-label">{{ visible_field.label_tag }}</label>
+                            <div class="col-md-7">{{ visible_field }}</div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <div class="col-md-offset-1 col-md-10">
+                            <input type="submit" class="btn btn-primary btn-block" value="Log in"/>
+                        </div>
+                    </div>
+                    <p>
+                        &nbsp Don't have an account? <a href="register">Sign up »</a>
+                    </p>
+                    <br>
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                    {% csrf_token %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

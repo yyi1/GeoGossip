@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <!-- Profile Row -->
+        <div class="jumbotron myBackground row" style="padding-bottom: 60px;">
+            <div class="col-lg-12">
+                <h2 class="gotham text-center">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    &nbsp; Edit profile
+                    <small class="mysmall">of {{ user }}</small>
+                </h2>
+                <br>
+                <hr class="myhr">
+                <br>
+                <div class="col-lg-4 text-center">
+                    {% if form.picture.value %}
+                        <img src="{% url 'avatar' id %}" width="300"
+                             alt="{{ form.first_name.value }} {{ form.last_name.value }}">
+                    {% endif %}
+                </div>
+                <form enctype="multipart/form-data" class="form-horizontal" action="{% url 'edit' %}" method="post">
+                    <div class="col-lg-7 text-center mypanel" style="margin-top: 0; margin-left: 60px;">
+                        <br>
+                        {% if form.non_field_errors %}
+                            <div class="row">
+                                {% for non_field_error in form.non_field_errors %}
+                                    <small class="err">{{ non_field_error }}</small>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% for visible_field in form.visible_fields %}
+                            <div class="form-group">
+                                {% for error in visible_field.errors %}
+                                    <small class="err">{{ error }}</small>
+                                {% endfor %}
+                                {% ifnotequal visible_field.label "Picture" %}
+                                    <label class="col-md-3 control-label">{{ visible_field.label_tag }}</label>
+                                    <div class="col-md-8">{{ visible_field }}</div>
+                                    <div class="col-md-1"></div>
+                                {% endifnotequal %}
+                            </div>
+                        {% endfor %}
+                        <label class="col-md-3 control-label">Change photo:</label>
+                        <input id="id_picture" name="picture" type="file" class="uploadFile col-md-8"
+                               style="margin-top: 5px">
+                        <br><br><br>
+                        <div class="buttonSet">
+                            <div class="row">
+                                <div class="col-md-offset-4 col-lg-2">
+                                    <input type="submit" class="btn btn-primary" value="Save profile">
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <a href="{% url 'profile' id %}" class="cancelButton">
+                                        <input type="button" class="btn btn-default" value="Cancel">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% csrf_token %}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- other Row -->
+    </div>
+{% endblock %}

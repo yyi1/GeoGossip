@@ -1,0 +1,8 @@
+{
+  "name": "GeoGossip",
+  "description": "A chat application based on location.",
+  "image": "heroku/python",
+  "repository": "https://github.com/CMU-Web-Application-Development/Team257",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ]
+}

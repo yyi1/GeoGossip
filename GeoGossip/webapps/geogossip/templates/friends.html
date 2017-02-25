@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron myBackground row" style="padding-bottom: 140px;">
+            <div class="col-lg-12">
+                <h2 class="gotham text-center">
+                    <span class="glyphicon glyphicon-heart"></span>
+                    &nbsp; Friends Card
+                    <small class="mysmall">of {{ current_user.username }}</small>
+                </h2>
+                <br>
+                <hr class="myhr">
+                <br>
+                {% for profile in profiles %}
+                    <div class="col-lg-5 col-sm-6 text-left mypanel" style="margin-left: 40px">
+                        <h3 class="text-center">
+                            <a href="{% url 'profile' profile.user.id %}">{{ profile.user.username }}</a>
+                        </h3>
+                        <hr class="style-one">
+                        <div class="col-lg-3 col-sm-6 text-center">
+                            <a href="{% url 'profile' profile.user.id %}">
+                                <img src="{% url 'avatar' profile.user.id %}" width="90"
+                                     alt="{{ profile.username }}">
+                            </a>
+                        </div>
+                        <div class="col-lg-4 text-left" style="margin-left: 10px">
+                            <h4>First name:
+                                <small>{{ profile.first_name }}</small>
+                            </h4>
+                            <h4>Last name:
+                                <small>{{ profile.last_name }}</small>
+                            </h4>
+                        </div>
+                        <div class="col-lg-4 text-left">
+                            <h4>Email:
+                                <small>{{ profile.email }}</small>
+                            </h4>
+                            <h4>Age:
+                                <small>{{ profile.age }}</small>
+                            </h4>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

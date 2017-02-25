@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <!-- Profile Row -->
+        <div class="jumbotron myBackground row" style="padding-bottom: 140px;">
+            <div class="col-lg-12">
+                <h2 class="gotham text-center">
+                    <span class="glyphicon glyphicon-user"></span>
+                    &nbsp; View profile
+                    <small class="mysmall">of {{ current_user.username }}</small>
+                </h2>
+                <br>
+                <hr class="myhr">
+                <br>
+                <div class="col-lg-4 col-sm-6 text-center">
+                    <img src="{% url 'avatar' current_user.id %}" width="300"
+                         alt="{{ profile.user.username }}">
+                </div>
+                <div class="col-lg-6 col-sm-6 text-left mypanel">
+                    <h3 class="text-center">{{ profile.user.username }}
+                    </h3>
+                    <hr class="style-one">
+                    <div class="col-lg-6 text-left">
+                        <h4>First name: <p>{{ profile.first_name }}</p></h4>
+                        <h4>Last name: <p>{{ profile.last_name }}</p></h4>
+                    </div>
+                    <div class="col-lg-6 text-left">
+                        <h4>Email: <p>{{ profile.email }}</p></h4>
+                        <h4>Age: <p>{{ profile.age }}</p></h4>
+                    </div>
+                    <div class="col-lg-12 text-left" style="margin-top: -10px">
+                        <h4>Bio: <p>{{ profile.bio }}</p></h4>
+                    </div>
+                    {% if unfollow %}
+                        <div class="text-right">
+                            <a href="{% url 'edit_follow' current_user.id %}">
+                                <span class="glyphicon glyphicon-eye-close"></span>
+                                Delete friend
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% if follow %}
+                        <div class="text-right">
+                            <a href="{% url 'edit_follow' current_user.id %}">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                Add friend
+                            </a>
+                        </div>
+                    {% endif %}
+                    <br>
+                </div>
+            </div>
+        </div>
+        <!-- other Row -->
+    </div>
+{% endblock %}
